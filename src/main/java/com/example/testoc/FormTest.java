@@ -14,16 +14,14 @@ public class FormTest extends FeedTest{
 
 	@Test(dataProvider="feeder")
 	@Source("./data/add.csv")
-	public void doGet(String a,String b,String expected) throws Exception{
+	public void doGet(String a, String b, String expected) throws Exception {
+		
 		CloseableHttpClient client = HttpClients.createDefault();
-//		HttpGet request = new HttpGet("http://172.31.7.69:8080/demo/FormServlet?a=" + a + "&b=" + b");
-
 		HttpGet request = new HttpGet("http://172.31.7.69:8080/demo/FormServlet?a=" + a + "&b=" + b);
 		CloseableHttpResponse response = client.execute(request);
 		String actual = EntityUtils.toString(response.getEntity());
 		System.out.println(actual);
 		Assert.assertEquals(actual, expected);
 	}
-	
 	
 }
